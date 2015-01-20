@@ -13,11 +13,11 @@ Team CTF:
 
 Frontend Team Lead
 ------------------
-Soumya Sarkar
-
-Rishita
+Amar Sharma
 
 Manvee
+
+Rishita
 
 Backend Team Lead
 -----------------

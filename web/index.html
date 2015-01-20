@@ -1,127 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="./Images/favicon.ico">
 
-    <title>Capture The Flag-Anwesha</title>
-    
-    <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Capture The Flag 2015</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/ctf.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-    <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body  style=" background-color: #000">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="index.html">Capture The Flag</a>
-        <a class="navbar-brand" href="http://2014.anwesha.info/" target="_blank">Anwesha 2014</a> 
-      
-        </div>
-        <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" role="form" action="Login" method="post">
-            <div class="form-group">
-              <input type="text" placeholder="Anwesha ID" name="user" class="form-control">
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="greentext glow" href="#">Capture The Flag :~#</a>
+                    <a class="blink_me glow">&nbsp;_</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <form method="POST" action="Login" class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" name="user" placeholder="Team Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="pass" placeholder="Password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success ">Sign in</button>
+                    </form>
+                </div>
+                <!--/.navbar-collapse -->
             </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" name="pass" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-
-    <div class="jumbotron"  style="background-color: black">
-      <div class="container">
-          <h1 class="greentext">Hello Hackers!</h1>
-        <table   style=" background-color: black">
-            <tr>
-                <td style="background-color: black">
-            <center>    <img src="./Images/Capture_the_flag copy.jpg" style=" position:  inherit"> </center>
-                </td>
-            </tr><tr>
-                <td>
-                    <p><p></p>
-                    <p style="text-align:  justify" class="greentext">In this era of digital world, there is one dark community rising with most intelligent individuals. Law maker call them criminals but normal people call them Hackers. If you are part of this community then this event is for you. Capture the flag is hacking challenge where you can prove your hacking skills.  This challenge will test your understanding of web applications & operating systems.</p>
-                    <p><a class="btn btn-primary btn-lg" role="button" href="register.jsp">Register &raquo;</a></p></td>
-        </tr>
-        </table>
-      
-      </div>
-    </div>
-    <div class="container">
+        </nav>
         <hr>
-        <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-              
-          <h2 class="greentext">Rules</h2>
-          <p class="greentext"> 1.	Team of maximum 2 people</p>
-<p class="greentext">2.	Internet is not allowed</p>
-<p class="greentext">3.	All necessary tools will be available into your system</p>
-<p class="greentext">4.	Find the flag(“special string”) to gain points</p>
-<p class="greentext">5.	Each problem has different points with respect to its difficulty</p>
-<p class="greentext">6.	Maximum point gainer will be the winner</p>
-      <!--    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        <hr>
+        <div class="container-fluid">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-8" height="100%">
+                    <img class="img-responsive" alt="Responsive image" src="poster.jpg">
+                </div>
+                <div class="col-md-4 well greenonblack regform">
+                    <form method="post" action="Registration">
+                        <div class="form-group glow">
+                            <h1><strong >Register</strong></h1>
+                        </div>
+                        <div class="form-group">
+                            <input required type="text" class="form-control" name="tname" placeholder="Team Name">
+                        </div>
+                        <div class="form-group">
+                            <input required type="password" class="form-control" name="pass" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input required type="password" class="form-control" name="repass" placeholder="Re-type Password">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <input required type="text" class="form-control " name="aid1" placeholder="*AnweshaID I">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control " name="aid2" placeholder="AnweshaID II">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control " name="aid3" placeholder="AnweshaID III">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input required type="text" class="form-control" name="college" placeholder="College Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="phone" placeholder="Phone">
+                        </div>
+                        <div class="form-group">
+                            <input required type="email" class="form-control" name="email" placeholder="E-mail ID">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <footer>
+                <p>&copy; CTF-IIT Patna 2015</p>
+            </footer>
         </div>
-        <div class="col-md-4">
-          <h2 class="greentext">Notice</h2>
-          <p class="greentext"><marquee direction="left">Event will be online during Anwesha 2014!!</marquee></p>
-   <!--       <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
-       </div>
-        <div class="col-md-4">
-          <h2 class="greentext">Contact</h2>
-          <p class="greentext">Ashutosh Agarwal </p>
-          <p class="greentext">9453012060</p>
-          <p class="greentext">Nishant M Gandhi</p>
-          <p class="greentext">8292310761</p>
-             
-              
-          </p>
-    <!--      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
-        </div>
-      </div>
+        <!-- /container -->
 
-      <hr>
-      
-      <footer>
-      
-          <img href="#" src="./Images/anwesha.jpg">
-        <p class="greentext">&copy; Anwesha 2014,IIT Patna</p>
-      </footer>
-    </div> <!-- /container -->
- 
+        <!-- Bootstrap core JavaScript
+                ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="dist/css/bootstrap.min.js"></script>
-     <script src="dist/js/bootstrap.js"></script>
-  </body>
 </html>

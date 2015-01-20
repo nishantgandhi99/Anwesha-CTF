@@ -1,0 +1,7 @@
+Rules for CTF Final:
+====================
++ Team can have maximum 3 members.
++ You must bring your laptop.
++ Internet Allowed.
++ Each problem will have different points according to its difficulty level.
++ Team who earns maximum point at the end of event will be winner.
