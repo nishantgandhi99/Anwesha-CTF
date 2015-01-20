@@ -46,29 +46,54 @@ public class Registration extends HttpServlet {
         Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/anwesha_ctf15", "ctf", "");
         String tname = request.getParameter("tname");
         String pass = request.getParameter("pass");
+        String repass = request.getParameter("repass");
         String aid1 = request.getParameter("aid1");
         String aid2 = request.getParameter("aid2");
         String aid3 = request.getParameter("aid3");
         String phone = request.getParameter("phone");
         String clg = request.getParameter("college");
         String email = request.getParameter("email");
-
+        out.write("input testing\n");
+        
+        /*
+        if (tname.isEmpty() || pass.isEmpty() || aid1.isEmpty() || clg.isEmpty() || email.isEmpty() ) {
+            out.write("incompleteForm\n");
+            response.sendRedirect("register.jsp?prob=incomplete");
+        }
+        
+        if (pass.equals(repass)) {
+            out.write("passwordUnmatched\n");
+            response.sendRedirect("register.jsp?prob=passUnMatch");
+            
+        }
+        
+        if (tname.length() > 20 || pass.length() > 20 || aid1.length()>20 || aid2.length()>20 || aid3.length()>20 || email.length() > 50 || clg.length() > 50)
+        {
+            out.write("lengthShort\n");
+            response.sendRedirect("register.jsp?prob=length");
+        }
+        */
         PreparedStatement ps = cn.prepareCall("select tname from user_info where tname=?");
         ps.setString(1, tname);
         ResultSet rs = ps.executeQuery();
-        out.write("query executed");
-        /*if (rs.first()) {
-            response.sendRedirect("register.jsp?prob=idExist");
+        if (rs.first()) {
+            out.write("TeamNameExist");
+            response.sendRedirect("register.jsp?prob=teamExist");
         } else {
+        
+        }
+        out.write("query started\n");
+        
+        /*
+        ps = cn.prepareCall("select tname from member1 where member1=?");
+        ps.setString(1, aid1);      //For now just compare aid1 with member 1
+        rs = ps.executeQuery();
+        if (rs.first()) {
             out.write("duplicate entry");
+            response.sendRedirect("register.jsp?prob=idExist&name="+rs.getString(2));
         }
-        if (uid.length() > 10 || pass.length() > 20 || name.length() > 50 || name.length() > 50 || email.length() > 20 || phno.length() > 11) {
-            response.sendRedirect("register.jsp?prob=length");
-        }
-
-        if (uid.isEmpty() || pass.isEmpty() || name.isEmpty() || clg.isEmpty() || email.isEmpty() || phno.isEmpty()) {
-            response.sendRedirect("register.jsp?prob=incomplete");
-        }*/
+        */
+        
         String plaintext = pass;
         MessageDigest m = MessageDigest.getInstance("MD5");
         m.reset();
