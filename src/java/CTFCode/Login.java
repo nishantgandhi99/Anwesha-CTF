@@ -104,7 +104,7 @@ public class Login extends HttpServlet {
  //     RequestDispatcher rd = request.getRequestDispatcher("studentdetail.jsp?login=nologin");
             // rd.forward(request, response);
             // request.sendRedirect("");
-            response.sendRedirect("index.html");
+            response.sendRedirect("index.jsp");
         }
 
         try {
