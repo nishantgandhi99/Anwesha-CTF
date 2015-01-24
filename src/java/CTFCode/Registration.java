@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Registration", urlPatterns = {"/Registration"})
 public class Registration extends HttpServlet {
-    private PrintWriter out;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,12 +38,10 @@ public class Registration extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        out= response.getWriter();
+        PrintWriter out = response.getWriter();
         Class.forName("com.mysql.jdbc.Driver");
         Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/anwesha_ctf15", "ctf", "");
         String tname = request.getParameter("tname");
@@ -57,13 +55,44 @@ public class Registration extends HttpServlet {
         String email = request.getParameter("email");
         out.write("input testing\n");
         
-        if(!checkInputs(cn,response,tname,pass,repass,aid1,aid2,aid3,phone,clg,email))
-        {
-            out.close();
-            return;
+        /*
+        if (tname.isEmpty() || pass.isEmpty() || aid1.isEmpty() || clg.isEmpty() || email.isEmpty() ) {
+            out.write("incompleteForm\n");
+            response.sendRedirect("register.jsp?prob=incomplete");
         }
         
-        out.write("Inserting Data\n");
+        if (pass.equals(repass)) {
+            out.write("passwordUnmatched\n");
+            response.sendRedirect("register.jsp?prob=passUnMatch");
+            
+        }
+        
+        if (tname.length() > 20 || pass.length() > 20 || aid1.length()>20 || aid2.length()>20 || aid3.length()>20 || email.length() > 50 || clg.length() > 50)
+        {
+            out.write("lengthShort\n");
+            response.sendRedirect("register.jsp?prob=length");
+        }
+        */
+        PreparedStatement ps = cn.prepareCall("select tname from user_info where tname=?");
+        ps.setString(1, tname);
+        ResultSet rs = ps.executeQuery();
+        if (rs.first()) {
+            out.write("TeamNameExist");
+            response.sendRedirect("register.jsp?prob=teamExist");
+        } else {
+        
+        }
+        out.write("query started\n");
+        
+        /*
+        ps = cn.prepareCall("select tname from member1 where member1=?");
+        ps.setString(1, aid1);      //For now just compare aid1 with member 1
+        rs = ps.executeQuery();
+        if (rs.first()) {
+            out.write("duplicate entry");
+            response.sendRedirect("register.jsp?prob=idExist&name="+rs.getString(2));
+        }
+        */
         
         String plaintext = pass;
         MessageDigest m = MessageDigest.getInstance("MD5");
@@ -97,7 +126,7 @@ public class Registration extends HttpServlet {
         problem.execute();
         problem.close();
         cn.close();
-        response.sendRedirect("index.jsp?info=done");
+        response.sendRedirect("index.html");
 
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -106,123 +135,7 @@ public class Registration extends HttpServlet {
             out.close();
         }
     }
-    private boolean checkInputs(Connection cn,HttpServletResponse response,String tname,String pass,String repass,String aid1,String aid2,String aid3,String phone,String clg,String email) throws IOException, SQLException
-    {
-        if (tname.isEmpty() || pass.isEmpty() || aid1.isEmpty() || clg.isEmpty() || email.isEmpty() ) {
-            out.write("incompleteForm\n");
-            response.sendRedirect("index.jsp?prob=incomplete");
-            return false;
-        }
-        
-        if (!pass.equals(repass)) {
-            out.write("passwordUnmatched\n");
-            response.sendRedirect("index.jsp?prob=passUnMatch");
-            return false;
-        }
-       
-        if (tname.length() > 20 || pass.length() > 20 || aid1.length()>20||  email.length() > 50 || clg.length() > 50)
-        {
-            out.write("lengthShort\n");
-            response.sendRedirect("index.jsp?prob=length");
-            return false;
-        }
-        else if(((!aid2.isEmpty()) && aid2.length()>20) || ((!aid3.isEmpty()) && aid3.length()>20) )
-        {
-            out.write("lengthShort\n");
-            response.sendRedirect("index.jsp?prob=length");
-            return false;
-        }
-        if((!phone.isEmpty()))
-        {
-            if(phone.length()!=10)
-            {
-            out.write("phoneFormat\n");
-            response.sendRedirect("index.jsp?prob=phone");
-            return false;
-            }
-                  
-        }    
-        return checkDatabase(cn,response,tname,aid1,aid2,aid3,phone);
-        
-    }
-    private boolean checkDatabase(Connection cn,HttpServletResponse response,String tname,String aid1,String aid2,String aid3,String phone) throws SQLException, IOException
-    {
-        PreparedStatement ps = cn.prepareCall("select tname from user_info where tname=?");
-        ps.setString(1, tname);
-        ResultSet rs = ps.executeQuery();
-        if (rs.first()) {
-            out.write("TeamNameExist");
-            response.sendRedirect("index.jsp?prob=teamExist");
-            
-            return false;
-        } 
-        
-        
-        ps = cn.prepareCall("select member1,member2,member3 from user_info where member1=? OR member2=? OR member3=?");
-        ps.setString(1, aid1);
-        ps.setString(2, aid1);
-        ps.setString(3, aid1);
-        
-        rs = ps.executeQuery();
-        if (rs.first()) {
-            out.write("Dupilicate Entry!");
-            response.sendRedirect("index.jsp?prob=idExist&name="+aid1);
-            return false;
-        }
-        
-        if(!aid2.isEmpty())
-        {
-            
-            ps = cn.prepareCall("select member1,member2,member3 from user_info where member1=? OR member2=? OR member3=?");
-            ps.setString(1, aid2);      
-            ps.setString(2, aid2);      
-            ps.setString(3, aid2);      
-            rs = ps.executeQuery();
-            if (rs.first()) {
-                out.write("Dupilicate Entry!");
-                response.sendRedirect("index.jsp?prob=idExist&name=" + aid2);
-                return false;
-            }
 
-        }
-        
-        if(!aid3.isEmpty())
-        {
-            
-            ps = cn.prepareCall("select member1,member2,member3 from user_info where member1=? OR member2=? OR member3=?");
-            ps.setString(1, aid3);      
-            ps.setString(2, aid3);      
-            ps.setString(3, aid3);      
-            
-            rs = ps.executeQuery();
-            if (rs.first()) {
-                out.write("Dupilicate Entry!");
-                response.sendRedirect("index.jsp?prob=idExist&name=" + aid3);
-                return false;
-            }
-
-        }
-        
-        if(!aid3.isEmpty())
-        {
-            
-            ps = cn.prepareCall("select member1,member2,member3 from user_info where member1=? OR member2=? OR member3=?");
-            ps.setString(1, aid3);      
-            ps.setString(2, aid3);      
-            ps.setString(3, aid3);      
-            
-            rs = ps.executeQuery();
-            if (rs.first()) {
-                out.write("Dupilicate Entry!");
-                response.sendRedirect("index.jsp?prob=idExist&name=" + aid3);
-                return false;
-            }
-
-        }
-        
-        return true;
-        
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
